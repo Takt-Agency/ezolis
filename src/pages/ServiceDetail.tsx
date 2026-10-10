@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
   faCheck,
   faArrowRight,
   faPhone,
@@ -11,6 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getService, services } from "../data/services";
 import CTA from "../components/CTA";
+import Eyebrow from "../components/Eyebrow";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function ServiceDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -28,7 +29,7 @@ export default function ServiceDetail() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-b from-brand-50 to-white py-14 lg:py-20 overflow-hidden">
+      <section className="page-hero relative pt-8 pb-14 lg:pt-10 lg:pb-20 overflow-hidden">
         <div className="absolute top-10 -right-20 w-96 h-96 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl pointer-events-none" />
 
@@ -38,30 +39,11 @@ export default function ServiceDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-6">
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-700 transition-colors"
-              >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
-                Tous les services
-              </Link>
-            </div>
+            <Breadcrumb items={[{ label: "Services", to: "/services" }, { label: service.shortTitle }]} />
 
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div>
-                <div className="flex items-center gap-3 mb-5 w-fit">
-                  <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                    <FontAwesomeIcon
-                      icon={service.icon}
-                      className="text-white text-sm"
-                    />
-                    <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-                  </span>
-                  <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                    {service.shortTitle}
-                  </span>
-                </div>
+                <Eyebrow icon={service.icon}>{service.shortTitle}</Eyebrow>
 
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
                   {service.title}
@@ -78,7 +60,7 @@ export default function ServiceDetail() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     to="/contact"
-                    className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium px-7 py-4 rounded-full shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-600/25 transition-all hover:shadow-xl hover:shadow-brand-600/30 hover:-translate-y-0.5"
                   >
                     Demander un devis
                     <FontAwesomeIcon icon={faArrowRight} />
@@ -199,18 +181,7 @@ export default function ServiceDetail() {
               transition={{ duration: 0.6 }}
               className="text-center mb-10"
             >
-              <div className="inline-flex items-center gap-3 mb-5">
-                <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                  <FontAwesomeIcon
-                    icon={faCircleQuestion}
-                    className="text-white text-sm"
-                  />
-                  <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-                </span>
-                <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                  Questions fréquentes
-                </span>
-              </div>
+              <Eyebrow icon={faCircleQuestion}>Questions fréquentes</Eyebrow>
               <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900">
                 Vous avez des questions ?
               </h2>

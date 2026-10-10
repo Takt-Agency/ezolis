@@ -4,20 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFileLines,
   faPhone,
-  faHouseChimney,
-  faScrewdriverWrench,
-  faUsers,
-  faUserCheck,
   faHelmetSafety,
+  faCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import heroImage from "../assets/hero-image.png";
+import StatsBar from "./StatsBar";
 
-const stats = [
-  { icon: faHouseChimney, value: "15+", label: "Années d'expérience" },
-  { icon: faScrewdriverWrench, value: "15/an", label: "Projets réalisés" },
-  { icon: faUsers, value: "2", label: "Équipes spécialisées" },
-  { icon: faUserCheck, value: "24/7", label: "Dépannage & urgence" },
-];
+const trustPoints = ["Devis gratuit", "Réponse sous 24h", "Marseille & alentours"];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -30,13 +23,13 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section id="accueil" className="relative bg-white">
+    <section id="accueil" className="relative bg-neutral-50">
       <div className="relative">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 overflow-hidden"
+          className="absolute inset-x-0 top-0 bottom-24 lg:bottom-0 overflow-hidden"
         >
           <motion.img
             src={heroImage}
@@ -57,8 +50,8 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-transparent md:from-white md:via-white/70 md:to-transparent lg:from-white lg:via-white/60 lg:via-40% lg:to-transparent lg:to-65%" />
         </motion.div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-10 lg:pb-36">
-          <div className="max-w-xl">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-12 lg:pt-20 pb-10 lg:pb-40">
+          <div className="max-w-2xl">
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -83,7 +76,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               custom={1}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 leading-[1.05] tracking-tight"
+              className="text-[2.6rem] md:text-6xl lg:text-[4.25rem] font-bold text-neutral-900 leading-[1.02] tracking-tight"
             >
               Rénovation générale
               <br />
@@ -97,7 +90,7 @@ export default function Hero() {
               initial="hidden"
               animate="visible"
               custom={2}
-              className="mt-6 text-base md:text-lg text-neutral-600 leading-relaxed"
+              className="mt-6 max-w-xl text-base md:text-lg text-neutral-600 leading-relaxed"
             >
               Rénovation intérieure et extérieure, isolation, carrelage,
               peinture, plomberie, électricité, climatisation et bien plus
@@ -113,19 +106,37 @@ export default function Hero() {
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium px-7 py-4 rounded-full shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-600/25 transition-all hover:shadow-xl hover:shadow-brand-600/30 hover:-translate-y-0.5"
               >
                 <FontAwesomeIcon icon={faFileLines} />
                 Demander un devis
               </Link>
               <a
                 href="tel:0662244083"
-                className="inline-flex items-center gap-2.5 bg-white border-2 border-neutral-200 hover:border-brand-600 text-neutral-900 font-medium px-7 py-4 rounded-full transition-all"
+                className="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur border border-neutral-200 hover:border-brand-500 text-neutral-900 font-semibold px-7 py-4 rounded-full shadow-sm transition-all"
               >
                 <FontAwesomeIcon icon={faPhone} className="text-brand-600" />
                 06 62 24 40 83
               </a>
             </motion.div>
+
+            <motion.ul
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={4}
+              className="mt-8 flex flex-wrap gap-x-6 gap-y-2"
+            >
+              {trustPoints.map((t) => (
+                <li
+                  key={t}
+                  className="flex items-center gap-2 text-sm font-medium text-neutral-700"
+                >
+                  <FontAwesomeIcon icon={faCircleCheck} className="text-brand-600" />
+                  {t}
+                </li>
+              ))}
+            </motion.ul>
           </div>
         </div>
 
@@ -135,29 +146,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="relative lg:absolute mx-6 lg:mx-0 lg:left-1/2 lg:-translate-x-1/2 lg:-bottom-14 lg:w-[calc(100%-5rem)] max-w-6xl z-10"
         >
-          <div className="bg-white/95 backdrop-blur-md rounded-2xl border border-neutral-100 shadow-2xl px-6 lg:px-10 py-6 lg:py-7">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="flex items-center gap-4 md:justify-center"
-                >
-                  <FontAwesomeIcon
-                    icon={s.icon}
-                    className="text-brand-600 text-3xl"
-                  />
-                  <div>
-                    <div className="text-2xl lg:text-3xl font-bold text-neutral-900">
-                      {s.value}
-                    </div>
-                    <div className="text-xs md:text-sm text-neutral-500">
-                      {s.label}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <StatsBar />
         </motion.div>
       </div>
 

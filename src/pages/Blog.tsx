@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
   faNewspaper,
   faArrowRight,
   faSpinner,
@@ -13,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useArticles } from "../hooks/useArticles";
 import CTA from "../components/CTA";
+import Eyebrow from "../components/Eyebrow";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function Blog() {
   const { articles, loading } = useArticles({ publishedOnly: true });
@@ -49,7 +50,7 @@ export default function Blog() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-b from-brand-50 to-white py-14 lg:py-20 overflow-hidden">
+      <section className="page-hero relative pt-8 pb-14 lg:pt-10 lg:pb-20 overflow-hidden">
         <div className="absolute top-10 -right-20 w-96 h-96 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl pointer-events-none" />
 
@@ -59,25 +60,9 @@ export default function Blog() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-6">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-700 transition-colors"
-              >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
-                Retour à l'accueil
-              </Link>
-            </div>
+            <Breadcrumb items={[{ label: "Blog" }]} />
 
-            <div className="flex items-center gap-3 mb-5 w-fit">
-              <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                <FontAwesomeIcon icon={faNewspaper} className="text-white text-sm" />
-                <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-              </span>
-              <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                Blog Ezolis
-              </span>
-            </div>
+            <Eyebrow icon={faNewspaper}>Blog Ezolis</Eyebrow>
 
             <div className="max-w-3xl">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
@@ -158,7 +143,7 @@ export default function Blog() {
                 >
                   <Link
                     to={`/blog/${featured.slug}`}
-                    className="group block bg-white rounded-3xl border border-neutral-100 overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                    className="group block bg-white rounded-3xl border border-neutral-100 overflow-hidden shadow-lg hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="grid lg:grid-cols-2 gap-0">
                       <div className="aspect-[4/3] lg:aspect-auto bg-neutral-100 relative overflow-hidden">
@@ -232,7 +217,7 @@ export default function Blog() {
                     >
                       <Link
                         to={`/blog/${a.slug}`}
-                        className="group block h-full bg-white rounded-3xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+                        className="group block h-full bg-white rounded-3xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300"
                       >
                         <div className="aspect-[16/10] bg-neutral-100 relative overflow-hidden">
                           <img

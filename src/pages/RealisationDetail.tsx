@@ -20,6 +20,7 @@ import CTA from "../components/CTA";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function RealisationDetail() {
   const { id } = useParams<{ id: string }>();
@@ -49,7 +50,7 @@ export default function RealisationDetail() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-b from-brand-50 to-white py-10 lg:py-14 overflow-hidden">
+      <section className="page-hero relative pt-8 pb-10 lg:pt-10 lg:pb-14 overflow-hidden">
         <div className="absolute top-10 -right-20 w-96 h-96 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-10">
@@ -58,15 +59,7 @@ export default function RealisationDetail() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-4">
-              <Link
-                to="/realisations"
-                className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-700 transition-colors"
-              >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
-                Toutes les réalisations
-              </Link>
-            </div>
+            <Breadcrumb items={[{ label: "Réalisations", to: "/realisations" }, { label: project.title }]} />
 
             <div className="flex flex-wrap items-center gap-2 mb-4">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] uppercase tracking-widest font-bold bg-brand-600 text-white">

@@ -15,6 +15,7 @@ import { services, type Service } from "../data/services";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import Eyebrow from "./Eyebrow";
 
 export default function Services() {
   const swiperRef = useRef<SwiperType | null>(null);
@@ -33,18 +34,7 @@ export default function Services() {
             transition={{ duration: 0.6 }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center gap-3 mb-5">
-              <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                <FontAwesomeIcon
-                  icon={faScrewdriverWrench}
-                  className="text-white text-sm"
-                />
-                <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-              </span>
-              <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                Nos services
-              </span>
-            </div>
+            <Eyebrow icon={faScrewdriverWrench}>Nos services</Eyebrow>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
               Des solutions complètes
               <br />
@@ -158,7 +148,7 @@ function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       to={`/services/${service.slug}`}
-      className="group relative block h-full bg-white rounded-2xl p-7 border border-neutral-100 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-brand-300"
+      className="group relative block h-full bg-white rounded-2xl p-7 border border-neutral-100 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-900/10 hover:border-brand-300"
     >
       <div
         className={`absolute -top-16 -right-16 w-48 h-48 bg-gradient-to-br ${service.accent} rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500`}

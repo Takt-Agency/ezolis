@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Eyebrow from "./Eyebrow";
 import {
   faPhone,
   faClock,
@@ -9,6 +10,7 @@ import {
   faFan,
   faSnowflake,
   faArrowRight,
+  faTruckFast,
 } from "@fortawesome/free-solid-svg-icons";
 
 const services = [
@@ -45,6 +47,10 @@ export default function Emergency() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-3"
           >
+            <Eyebrow icon={faTruckFast} tone="dark">
+              Dépannage &amp; urgence
+            </Eyebrow>
+
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
               Besoin d'une intervention
               <br />

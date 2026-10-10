@@ -5,7 +5,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
   faClock,
   faUser,
   faSpinner,
@@ -21,6 +20,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useArticleBySlug, useArticles } from "../hooks/useArticles";
 import CTA from "../components/CTA";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function BlogArticle() {
   const { slug } = useParams<{ slug: string }>();
@@ -51,7 +51,7 @@ export default function BlogArticle() {
   return (
     <>
       <article>
-        <section className="relative bg-gradient-to-b from-brand-50 to-white py-10 lg:py-14 overflow-hidden">
+        <section className="page-hero relative pt-8 pb-10 lg:pt-10 lg:pb-14 overflow-hidden">
           <div className="absolute top-10 -right-20 w-96 h-96 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative max-w-4xl mx-auto px-6 lg:px-10">
@@ -60,15 +60,7 @@ export default function BlogArticle() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="mb-6">
-                <Link
-                  to="/blog"
-                  className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-700 transition-colors"
-                >
-                  <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
-                  Tous les articles
-                </Link>
-              </div>
+              <Breadcrumb items={[{ label: "Blog", to: "/blog" }, { label: article.title }]} />
 
               {article.category && (
                 <div className="text-[11px] font-bold tracking-[0.22em] text-brand-700 uppercase mb-4">

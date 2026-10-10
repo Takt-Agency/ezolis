@@ -12,6 +12,7 @@ import {
   faAward,
 } from "@fortawesome/free-solid-svg-icons";
 import heroImage from "../assets/hero-image.png";
+import Eyebrow from "./Eyebrow";
 
 const commitments = [
   { icon: faHandshake, text: "Un accompagnement adapté à votre projet" },
@@ -82,18 +83,7 @@ export default function About() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="inline-flex items-center gap-3 mb-5">
-              <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                <FontAwesomeIcon
-                  icon={faAward}
-                  className="text-white text-sm"
-                />
-                <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-              </span>
-              <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                Pourquoi Ezolis
-              </span>
-            </div>
+            <Eyebrow icon={faAward}>Pourquoi Ezolis</Eyebrow>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
               Un seul interlocuteur
@@ -149,7 +139,7 @@ export default function About() {
             >
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium px-7 py-4 rounded-full shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-600/25 transition-all hover:shadow-xl hover:shadow-brand-600/30 hover:-translate-y-0.5"
               >
                 En savoir plus
                 <FontAwesomeIcon icon={faArrowRight} />

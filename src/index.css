@@ -1,8 +1,11 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/bricolage-grotesque";
 
 @theme {
   --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Inter Variable", system-ui,
+    sans-serif;
 
   --color-brand-50: #f6f7f0;
   --color-brand-100: #ebeeda;
@@ -14,21 +17,92 @@
   --color-brand-700: #556131;
   --color-brand-800: #454e2b;
   --color-brand-900: #3a4227;
+
+  /* Neutres légèrement réchauffés pour s'accorder au vert olive */
+  --color-neutral-50: #f8f8f4;
+  --color-neutral-950: #11130e;
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: #1a1a1a;
+    background: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  h1,
+  h2 {
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-brand-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-sans);
-  color: #1a1a1a;
-  background: #ffffff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* En-tête des pages internes : dégradé + trame discrète */
+.page-hero {
+  background: linear-gradient(
+    to bottom,
+    var(--color-brand-50),
+    color-mix(in oklab, var(--color-brand-50) 40%, white) 60%,
+    #ffffff
+  );
 }
 
-* {
-  box-sizing: border-box;
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgb(85 97 49 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(85 97 49 / 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 70% 0%, black, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

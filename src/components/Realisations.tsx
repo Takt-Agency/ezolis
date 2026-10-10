@@ -16,6 +16,7 @@ import {
 import { useProjects } from "../hooks/useProjects";
 
 import "swiper/css";
+import Eyebrow from "./Eyebrow";
 
 export default function Realisations() {
   const { projects, loading } = useProjects();
@@ -36,18 +37,7 @@ export default function Realisations() {
             transition={{ duration: 0.6 }}
             className="max-w-2xl"
           >
-            <div className="inline-flex items-center gap-3 mb-5">
-              <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                <FontAwesomeIcon
-                  icon={faCameraRetro}
-                  className="text-white text-sm"
-                />
-                <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-              </span>
-              <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                Nos réalisations
-              </span>
-            </div>
+            <Eyebrow icon={faCameraRetro}>Nos réalisations</Eyebrow>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
               Découvrez
               <br />
@@ -136,7 +126,7 @@ export default function Realisations() {
                 <SwiperSlide key={p.id} className="!h-auto">
                   <Link
                     to={`/realisations/${p.id}`}
-                    className="group block h-full bg-white rounded-3xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+                    className="group block h-full bg-white rounded-3xl border border-neutral-100 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-900/10 hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="aspect-[4/3] bg-neutral-100 relative overflow-hidden">
                       {p.images[0] && (

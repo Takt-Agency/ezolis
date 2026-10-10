@@ -4,12 +4,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
-  faChevronLeft,
   faUsers,
   faHouseChimney,
-  faScrewdriverWrench,
-  faUserGroup,
-  faUserCheck,
   faHandshake,
   faLightbulb,
   faShieldHalved,
@@ -21,13 +17,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import aproposImage from "../assets/image-apropos.png";
 import CTA from "../components/CTA";
-
-const stats = [
-  { icon: faHouseChimney, value: "15+", label: "Années d'expérience" },
-  { icon: faScrewdriverWrench, value: "15/an", label: "Projets réalisés" },
-  { icon: faUserGroup, value: "2", label: "Équipes spécialisées" },
-  { icon: faUserCheck, value: "24/7", label: "Dépannage & urgence" },
-];
+import StatsBar from "../components/StatsBar";
+import Eyebrow from "../components/Eyebrow";
+import Breadcrumb from "../components/Breadcrumb";
 
 type Value = { icon: IconDefinition; title: string; text: string };
 
@@ -84,7 +76,7 @@ export default function APropos() {
 
   return (
     <>
-      <section className="relative bg-gradient-to-b from-brand-50 to-white py-14 lg:py-20 overflow-hidden">
+      <section className="page-hero relative pt-8 pb-14 lg:pt-10 lg:pb-20 overflow-hidden">
         <div className="absolute top-10 -right-20 w-96 h-96 bg-brand-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-brand-200/40 rounded-full blur-3xl pointer-events-none" />
 
@@ -94,30 +86,11 @@ export default function APropos() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-6">
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-brand-700 transition-colors"
-              >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
-                Retour à l'accueil
-              </Link>
-            </div>
+            <Breadcrumb items={[{ label: "À propos" }]} />
 
             <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
               <div>
-                <div className="flex items-center gap-3 mb-5 w-fit">
-                  <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                    <FontAwesomeIcon
-                      icon={faUsers}
-                      className="text-white text-sm"
-                    />
-                    <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-                  </span>
-                  <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                    Qui sommes-nous
-                  </span>
-                </div>
+                <Eyebrow icon={faUsers}>Qui sommes-nous</Eyebrow>
 
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
                   Ezolis,{" "}
@@ -169,29 +142,8 @@ export default function APropos() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl border border-neutral-100 shadow-xl px-6 lg:px-10 py-8 lg:py-10"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
-              {stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="flex items-center gap-4 md:justify-center"
-                >
-                  <FontAwesomeIcon
-                    icon={s.icon}
-                    className="text-brand-600 text-3xl"
-                  />
-                  <div>
-                    <div className="text-2xl lg:text-3xl font-bold text-neutral-900">
-                      {s.value}
-                    </div>
-                    <div className="text-xs md:text-sm text-neutral-500">
-                      {s.label}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <StatsBar />
           </motion.div>
         </div>
       </section>
@@ -207,18 +159,7 @@ export default function APropos() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl mb-12"
           >
-            <div className="flex items-center gap-3 mb-5 w-fit">
-              <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                <FontAwesomeIcon
-                  icon={faHouseChimney}
-                  className="text-white text-sm"
-                />
-                <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-              </span>
-              <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                Notre approche
-              </span>
-            </div>
+            <Eyebrow icon={faHouseChimney}>Notre approche</Eyebrow>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
               Une approche globale
@@ -246,7 +187,7 @@ export default function APropos() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative bg-white rounded-3xl p-7 border border-neutral-100 hover:border-brand-300 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden"
+                className="group relative bg-white rounded-3xl p-7 border border-neutral-100 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-900/10 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
               >
                 <div className="absolute -top-16 -right-16 w-40 h-40 bg-brand-100/60 rounded-full blur-2xl opacity-70 group-hover:opacity-100 transition-opacity" />
 
@@ -279,18 +220,7 @@ export default function APropos() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="flex items-center gap-3 mb-5 w-fit">
-                <span className="relative flex items-center justify-center w-11 h-11 rounded-full bg-brand-600 shadow-lg shadow-brand-600/30">
-                  <FontAwesomeIcon
-                    icon={faHandshake}
-                    className="text-white text-sm"
-                  />
-                  <span className="absolute inset-0 rounded-full border-2 border-brand-300 scale-125 opacity-60" />
-                </span>
-                <span className="text-[11px] font-bold tracking-[0.22em] text-brand-800 uppercase">
-                  Notre accompagnement
-                </span>
-              </div>
+              <Eyebrow icon={faHandshake}>Notre accompagnement</Eyebrow>
 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 tracking-tight leading-tight">
                 De votre projet
@@ -316,7 +246,7 @@ export default function APropos() {
 
               <Link
                 to="/"
-                className="mt-8 inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-medium px-7 py-4 rounded-full shadow-sm transition-all hover:shadow-lg hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center gap-2.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-7 py-4 rounded-full shadow-lg shadow-brand-600/25 transition-all hover:shadow-xl hover:shadow-brand-600/30 hover:-translate-y-0.5"
               >
                 Découvrir nos services
                 <FontAwesomeIcon icon={faArrowRight} />
